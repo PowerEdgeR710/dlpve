@@ -2,24 +2,11 @@
 set -e
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
-SKIP_HOSTNAME=false
-for arg in "$@"; do
-  if [[ "$arg" == "-i" ]]; then
-    SKIP_HOSTNAME=true
-    break
-  fi
-done
 apt update && apt install -y figlet
 clear
 figlet "Dlpve"
-if $SKIP_HOSTNAME; then
-  NEW_HOSTNAME=$(hostname)
-  if [[ "$NEW_HOSTNAME" != *.* ]]; then
-    NEW_HOSTNAME="${NEW_HOSTNAME}.local"
-  fi
-else
-  echo "Enter the hostname for your Proxmox server (e.g. testing.local):"
-  read -rp "> " NEW_HOSTNAME
+echo "Enter the hostname for your Proxmox server (e.g. testing.local):"
+read -rp "> " NEW_HOSTNAME
   if [[ -z "$NEW_HOSTNAME" ]]; then
     NEW_HOSTNAME=$(hostname)
   fi
