@@ -8,15 +8,6 @@ apt update && apt install -y figlet
 
 clear
 
-figlet "Proxmox Installer"
-
-export DEBIAN_FRONTEND=noninteractive
-export DEBCONF_NONINTERACTIVE_SEEN=true
-
-apt update && apt install -y figlet
-
-clear
-
 figlet "Dlpve"
 
 echo "Enter the hostname for your Proxmox server (e.g. testing.local):"
