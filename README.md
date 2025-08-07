@@ -11,14 +11,8 @@ Run it on a fresh Debian install and get your Proxmox VE up and running.
 **Usage:**
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/PowerEdgeR710/dlpve/refs/heads/main/install.sh | bash
+wget -O install.sh https://raw.githubusercontent.com/PowerEdgeR710/dlpve/refs/heads/main/install.sh && bash install.sh
 ```
-OR
-```bash
-wget -qO- https://raw.githubusercontent.com/PowerEdgeR710/dlpve/refs/heads/main/install.sh | SKIP_HOSTNAME=true bash
-```
-
-`SKIP_HOSTNAME=true` skips hostname prompt, uses current hostname.
 
 ---
 
