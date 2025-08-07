@@ -9,17 +9,9 @@ apt update && apt install -y figlet
 clear
 
 figlet "Dlpve"
-
+echo
 echo "Enter the hostname for your Proxmox server (e.g. testing.local):"
 read -rp "> " NEW_HOSTNAME
-
-if [[ -z "$NEW_HOSTNAME" ]]; then
-  NEW_HOSTNAME=$(hostname)
-fi
-
-if [[ "$NEW_HOSTNAME" != *.* ]]; then
-  NEW_HOSTNAME="${NEW_HOSTNAME}.local"
-fi
 
 echo "Detecting main ethernet interface..."
 
@@ -40,7 +32,6 @@ else
   echo "Detected IP on $MAIN_IFACE: $HOST_IP"
 fi
 
-clear
 figlet "Setting Hostname"
 hostnamectl set-hostname "$NEW_HOSTNAME"
 
