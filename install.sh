@@ -14,6 +14,7 @@ read -rp "> " NEW_HOSTNAME
     NEW_HOSTNAME="${NEW_HOSTNAME}.local"
   fi
 fi
+# Edit - 18 / Remove f*ckin broken ass hostname shit.
 echo "Detecting main ethernet interface..."
 MAIN_IFACE=$(ip route get 8.8.8.8 | awk '{for(i=1;i<=NF;i++) if ($i=="dev") print $(i+1)}' | grep ^e | head -n1)
 if [[ -z "$MAIN_IFACE" ]]; then
