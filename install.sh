@@ -200,6 +200,11 @@ systemctl start $SERVICE_NAME
 
 clear
 
+figlet Fixing SSL Certs
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/pve/local/pve-ssl.key -out /etc/pve/local/pve-ssl.pem -subj "/C=US/ST=State/L=City/O=Org/OU=Unit/CN=$(hostname)"
+
+clear
+
 figlet Proxmox Install
 echo "... is done"
 echo
