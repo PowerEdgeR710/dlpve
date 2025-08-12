@@ -32,13 +32,15 @@ else
   echo "Detected IP on $MAIN_IFACE: $HOST_IP"
 fi
 
+SHORT_HOSTNAME="${NEW_HOSTNAME%%.*}"
+
 figlet "Setting Hostname"
 hostnamectl set-hostname "$NEW_HOSTNAME"
 
 echo "Updating /etc/hosts with hostname and IP..."
 cat > /etc/hosts <<EOF
 127.0.0.1       localhost
-$HOST_IP        $NEW_HOSTNAME $NEW_HOSTNAME
+$HOST_IP        $SHORT_HOSTNAME $NEW_HOSTNAME
 ::1             localhost ip6-localhost ip6-loopback
 ff02::1         ip6-allnodes
 ff02::2         ip6-allrouters
