@@ -115,8 +115,8 @@ iface vmbr0 inet static
         bridge_stp off
         bridge_fd 0
         post-up echo 1 > /proc/sys/net/ipv4/ip_forward
-        post-up iptables -t nat -A POSTROUTING -s '10.0.0.0/8' -o $MAIN_IFACE -j MASQUERADE
-        post-down iptables -t nat -D POSTROUTING -s '10.0.0.0/8' -o $MAIN_IFACE -j MASQUERADE
+        post-up iptables -t nat -A POSTROUTING -s '172.16.0.0/12' -o $MAIN_IFACE -j MASQUERADE
+        post-down iptables -t nat -D POSTROUTING -s '172.16.0.0/12' -o $MAIN_IFACE -j MASQUERADE
 EOF
 
 figlet "Presetup Complete"
