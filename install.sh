@@ -32,15 +32,13 @@ else
   echo "Detected IP on $MAIN_IFACE: $HOST_IP"
 fi
 
-SHORT_HOSTNAME="${NEW_HOSTNAME%%.*}"
-
 figlet "Setting Hostname"
 hostnamectl set-hostname "$NEW_HOSTNAME"
 
 echo "Updating /etc/hosts with hostname and IP..."
 cat > /etc/hosts <<EOF
 127.0.0.1       localhost
-$HOST_IP        $SHORT_HOSTNAME $NEW_HOSTNAME
+$HOST_IP        $NEW_HOSTNAME $NEW_HOSTNAME
 ::1             localhost ip6-localhost ip6-loopback
 ff02::1         ip6-allnodes
 ff02::2         ip6-allrouters
@@ -109,8 +107,8 @@ cat >> /etc/network/interfaces <<EOF
 
 auto vmbr0
 iface vmbr0 inet static
-        address  10.0.0.1
-        netmask  255.0.0.0
+        address  172.16.0.1
+        netmask  255.240.0.0
         bridge_ports none
         bridge_stp off
         bridge_fd 0
@@ -138,9 +136,9 @@ apt install -y proxmox-ve postfix open-iscsi chrony isc-dhcp-server
 echo 'INTERFACESv4="vmbr0"' > /etc/default/isc-dhcp-server
 
 cat > /etc/dhcp/dhcpd.conf <<EOD
-subnet 10.0.0.0 netmask 255.240.0.0 {
-  range 10.0.0.10 10.15.255.254;
-  option routers 10.0.0.1;
+subnet 172.16.0.0 netmask 255.240.0.0 {
+  range 172.16.0.10 172.31.255.254;
+  option routers 172.16.0.1;
   option subnet-mask 255.240.0.0;
   option domain-name-servers 1.1.1.1, 8.8.8.8;
   default-lease-time 600;
@@ -199,11 +197,6 @@ systemctl daemon-reexec
 systemctl daemon-reload
 systemctl enable $SERVICE_NAME
 systemctl start $SERVICE_NAME
-
-clear
-
-figlet Fixing SSL Certs
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/pve/local/pve-ssl.key -out /etc/pve/local/pve-ssl.pem -subj "/C=US/ST=State/L=City/O=Org/OU=Unit/CN=$(hostname)"
 
 clear
 
