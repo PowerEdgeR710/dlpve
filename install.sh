@@ -170,6 +170,12 @@ clear
 figlet "Removing os-prober package"
 apt remove -y os-prober || true
 
+mkdir -p /etc/pve/local
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout /etc/pve/local/pve-ssl.key \
+  -subj "/C=US/ST=State/L=City/O=Org/OU=Unit/CN=localhost"
+
 apt autoremove -y
 
 clear
