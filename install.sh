@@ -170,8 +170,6 @@ clear
 figlet "Removing os-prober package"
 apt remove -y os-prober || true
 
-rm -rf /etc/pve
-
 apt autoremove -y
 
 clear
