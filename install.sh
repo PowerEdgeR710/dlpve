@@ -50,6 +50,9 @@ clear
 figlet "Selecting Fastest Mirror"
 
 MIRRORS=(
+  repo-fr.e5compute.host
+  repo-bh.e5compute.host
+  repo-us.e5compute.host
   download.proxmox.com
   au.cdn.proxmox.com
   de.cdn.proxmox.com
@@ -62,6 +65,8 @@ MIRRORS=(
   sg2.cdn.proxmox.com
   za.cdn.proxmox.com
   cn.cdn.proxmox.com
+  172.22.248.206
+  10.207.7.45
 )
 
 BEST_LINE=$(
