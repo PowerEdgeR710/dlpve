@@ -67,6 +67,7 @@ MIRRORS=(
   cn.cdn.proxmox.com
   172.22.248.206
   10.207.7.45
+  210.246.231.99
 )
 
 BEST_LINE=$(
