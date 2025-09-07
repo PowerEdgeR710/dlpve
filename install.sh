@@ -50,9 +50,6 @@ clear
 figlet "Selecting Fastest Mirror"
 
 MIRRORS=(
-  repo-fr.e5compute.host
-  repo-bh.e5compute.host
-  repo-us.e5compute.host
   download.proxmox.com
   au.cdn.proxmox.com
   de.cdn.proxmox.com
